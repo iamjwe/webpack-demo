@@ -8,23 +8,36 @@ module.exports = {
         path: path.join(__dirname, 'dist')
     },
     module: {
-        rules: [
-        {
-            test: /.css$/,
-            use: [
-                'vue-style-loader',
-                'css-loader'
-            ]
-        },
-        {
-            test: /.png$/,
-            use: {
-                loader: 'url-loader',
-                options: {
-                    limit: 10 * 1024 // 10 KB
+        rules: [{
+                test: /\.js$/,
+                exclude: /node_modules/,
+                use: {
+                    loader: 'babel-loader',
+                    options: {
+                        presets: [
+                            ['@babel/preset-env', {
+                                targets: "defaults"
+                            }]
+                        ]
+                    }
+                }
+            },
+            {
+                test: /.css$/,
+                use: [
+                    'vue-style-loader',
+                    'css-loader'
+                ]
+            },
+            {
+                test: /.png$/,
+                use: {
+                    loader: 'url-loader',
+                    options: {
+                        limit: 10 * 1024 // 10 KB
+                    }
                 }
             }
-        }
         ]
     },
     plugins: []
