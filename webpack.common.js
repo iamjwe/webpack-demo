@@ -52,6 +52,21 @@ module.exports = {
         ]
     },
     plugins: [
-        new VueLoaderPlugin()
+        new VueLoaderPlugin(),
+        new CleanWebpackPlugin(),
+        // 用于生成 index.html
+        new HtmlWebpackPlugin({
+            title: 'Webpack Tutorials',
+            meta: {
+                viewport: 'width=device-width'
+            },
+            template: './src/index.html'
+        }),
+        new CopyWebpackPlugin({
+            patterns: [{
+                from: "public",
+                to: "public"
+            }, ]
+        })
     ]
 }
