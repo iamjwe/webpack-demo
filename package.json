@@ -11,5 +11,11 @@
     "vue": "^2.6.11"
   },
   "devDependencies": {
-  },
+    "css-loader": "^5.0.1",
+    "file-loader": "^6.2.0",
+    "style-loader": "^2.0.0",
+    "url-loader": "^4.1.1",
+    "webpack": "^5.11.1",
+    "webpack-cli": "^4.3.0"
+  }
 }
