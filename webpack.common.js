@@ -7,7 +7,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 
 module.exports = {
-    mode: 'production',
+    mode: 'development',
     entry: './src/main.js',
     output: {
         filename: 'bundle.js',
@@ -42,16 +42,16 @@ module.exports = {
             {
                 test: /.css$/,
                 use: [
-                    'vue-style-loader',
+                    'style-loader',
                     'css-loader'
                 ]
             },
             {
-                test: /.png$/,
+                test: /\.(png|jpe?g|gif)$/,
                 use: {
-                    loader: 'url-loader',
+                    loader: 'file-loader',
                     options: {
-                        limit: 10 * 1024 // 10 KB
+                        esModule: false
                     }
                 }
             }
@@ -66,7 +66,10 @@ module.exports = {
             meta: {
                 viewport: 'width=device-width'
             },
-            template: './src/index.html'
+            template: './src/index.html',
+            templateParameters: {
+                BASE_URL: './public/'
+            }
         }),
         new CopyWebpackPlugin({
             patterns: [{
