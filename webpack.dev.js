@@ -13,6 +13,7 @@ module.exports = {
         filename: 'bundle.js',
         path: path.join(__dirname, 'dist')
     },
+    devtool: 'eval-cheap-module-source-map',
     devServer: {
         contentBase: './public',    // web root: ram data and public dir data
         port: 9000,
