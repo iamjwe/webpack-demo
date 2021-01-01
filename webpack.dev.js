@@ -1,4 +1,5 @@
 const path = require('path')
+const webpack = require('webpack')
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
 const {
     CleanWebpackPlugin
@@ -28,7 +29,9 @@ module.exports = {
                 // 不能使用 localhost:8080 作为请求 GitHub 的主机名
                 changeOrigin: true
             }
-        }
+        },
+        hot: true,  // 替换成功自动刷新，替换失败回退刷新（始终运行正常）
+        hotOnly: true,  // 替换成功 / 失败都不刷新（报错时运行失败）
     },
     module: {
         rules: [{
@@ -75,6 +78,7 @@ module.exports = {
         ]
     },
     plugins: [
+        new webpack.HotModuleReplacementPlugin(),
         new VueLoaderPlugin(),
         new CleanWebpackPlugin(),
         // 用于生成 index.html
