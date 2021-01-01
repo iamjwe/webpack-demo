@@ -6,6 +6,7 @@ const {
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 
+
 module.exports = {
     mode: 'development',
     entry: './src/main.js',
@@ -47,13 +48,14 @@ module.exports = {
                 ]
             },
             {
-                test: /\.(png|jpe?g|gif)$/,
-                use: {
-                    loader: 'file-loader',
+                test: /\.(png|jpg|gif)$/i,
+                use: [{
+                    loader: 'url-loader',
                     options: {
+                        limit: 10 * 1024,    // 8kb以下的模块文件以DataUrl的形式嵌入在·bundle.js中
                         esModule: false
-                    }
-                }
+                    },
+                }],
             }
         ]
     },
