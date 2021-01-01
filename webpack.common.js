@@ -1,4 +1,5 @@
 const path = require('path')
+const webpack = require('webpack')
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
 const {
     CleanWebpackPlugin
@@ -69,15 +70,19 @@ module.exports = {
                 viewport: 'width=device-width'
             },
             template: './src/index.html',
-            templateParameters: {
-                BASE_URL: './public/'
-            }
+            // templateParameters: {
+            //     BASE_URL: './public/'
+            // }
         }),
         new CopyWebpackPlugin({
             patterns: [{
                 from: "public",
                 to: "public"
             }, ]
-        })
+        }),
+        new webpack.DefinePlugin({
+            // 值要求的是一个代码片段
+            BASE_URL: JSON.stringify('./public/')
+          })
     ]
 }
